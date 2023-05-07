@@ -8,24 +8,24 @@ Base = declarative_base()
 
 
 class User(Base):
-    __tablename__ = "users"
+    __tablename__ = "user"
 
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String(50), unique=True, index=True)
+    first_name = Column(String(50), unique=False, index=True)
+    last_name = Column(String(50), unique=False, index=True)
     hashed_password = Column(String(300))
     is_active = Column(Boolean, default=True)
-
-    items = relationship("Item", back_populates="owner")
+    item = relationship("Item", back_populates="owner")
 
 
 
 class Item(Base):
-    __tablename__ = "items"
+    __tablename__ = "item"
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(20), index=True)
     description = Column(String(500), index=True)
-    owner_id = Column(Integer, ForeignKey("users.id"))
-
-    owner = relationship("User", back_populates="items")
+    owner_id = Column(Integer, ForeignKey("user.id"))
+    owner = relationship("User", back_populates="item")
 

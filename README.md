@@ -23,6 +23,7 @@ The API documentation will be available at http://localhost:8000/docs.
 
 - FastAPI for fast and easy API development
 - SQLAlchemy for database access and management
+- structure based on Django
 
 # Contributing
 
