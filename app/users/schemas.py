@@ -1,9 +1,6 @@
 from pydantic import BaseModel
 
 
-
-
-
 class ItemBase(BaseModel):
     title: str
     description: str | None = None
@@ -36,17 +33,3 @@ class User(UserBase):
 
     class Config:
         orm_mode = True
-
-
-
-
-
-
-
-
-
-
-# class User(BaseModel):
-#     name: str
-#     email: str
-#     password: str

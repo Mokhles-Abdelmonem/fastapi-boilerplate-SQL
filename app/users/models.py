@@ -11,7 +11,7 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
-    email = Column(String(15), unique=True, index=True)
+    email = Column(String(50), unique=True, index=True)
     hashed_password = Column(String(300))
     is_active = Column(Boolean, default=True)
 
@@ -23,7 +23,7 @@ class Item(Base):
     __tablename__ = "items"
 
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String(15), index=True)
+    title = Column(String(20), index=True)
     description = Column(String(500), index=True)
     owner_id = Column(Integer, ForeignKey("users.id"))
 
