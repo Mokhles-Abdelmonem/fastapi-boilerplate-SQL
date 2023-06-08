@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+
+  users_app:
+    container_name: users_app
+    build: ./users_new_app
+    command: bash -c "uvicorn main:app --reload --host 0.0.0.0 --port 8000 "
+    volumes:
+      - .:/users_new_app
+    ports:
+      - 8000:8000
+    restart: always
+
+  grpc:
+    container_name: grpc_server
+    build: ./grpc_users
+    command: bash -c "python3 grpc_users/greeter_server.py"
+    volumes:
+      - .:/grpc_users
+    ports:
+      - 50051:50051
+    extra_hosts:
+        - "host.docker.internal:host-gateway"
+    network_mode: bridge
+
+  building_app:
+    container_name: building_app_3
+    build: ./building_app
+    command: bash -c "uvicorn main:app --reload --host 0.0.0.0 --port 7000"
+    volumes:
+      - .:/building_app
+    ports:
+      - 7000:7000
+    restart: always
+    links:
+      - users_app

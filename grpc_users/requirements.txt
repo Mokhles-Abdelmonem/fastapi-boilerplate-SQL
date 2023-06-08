@@ -1,0 +1,13 @@
+black
+cryptography
+docker
+docker-compose
+fastapi
+python-dotenv
+uvicorn
+fastapi_jwt_auth
+python-jose
+passlib
+motor
+grpcio
+python-grpc
